@@ -15,53 +15,72 @@
           <div class="d-flex justify-content-center">
             <div class="brand_logo_container">
               <img
-                src="../assets/images/logo.png"
+                src="../assets/images/logobg.png"
                 class="brand_logo"
                 alt="Logo"
               />
             </div>
           </div>
-          <div class="d-flex justify-content-center form_container">
-            <form>
-              <div class="input-group mb-3">
-                <div class="input-group-append">
-                  <span class="input-group-text"
-                    ><i class="fas fa-user"></i
-                  ></span>
+          <div class="d-flex flex-column justify-content-center form_container">
+            <h1 class="text-center mb-4 text-white">Sign In</h1>
+            <div class="d-flex justify-content-center">
+              <form>
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <span class="input-group-text"
+                      ><i class="fas fa-user"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    name=""
+                    class="form-control input_user"
+                    value=""
+                    placeholder="Username"
+                  />
                 </div>
-                <input
-                  type="text"
-                  name=""
-                  class="form-control input_user"
-                  value=""
-                  placeholder="Username"
-                />
-              </div>
-              <div class="input-group mb-2">
-                <div class="input-group-append">
-                  <span class="input-group-text"
-                    ><i class="fas fa-key"></i
-                  ></span>
+                <div class="input-group mb-3">
+                  <div class="input-group-append">
+                    <span class="input-group-text"
+                      ><i class="fas fa-key"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="password"
+                    name=""
+                    class="form-control input_pass"
+                    value=""
+                    placeholder="Password"
+                  />
                 </div>
-                <input
-                  type="password"
-                  name=""
-                  class="form-control input_pass"
-                  value=""
-                  placeholder="Password"
-                />
-              </div>
-              <div class="d-flex justify-content-center mt-3 login_container">
-                <button type="button" name="button" class="btn login_btn">
-                  Login
-                </button>
-              </div>
-            </form>
+                <div class="input-group mb-2">
+                  <div class="input-group-append">
+                    <span class="input-group-text"
+                      ><i class="fas fa-key"></i
+                    ></span>
+                  </div>
+                  <input
+                    type="confirmpassword"
+                    name=""
+                    class="form-control input_pass"
+                    value=""
+                    placeholder="Confirm Password"
+                  />
+                </div>
+                <div class="d-flex justify-content-center mt-3 login_container">
+                  <button type="button" name="button" class="btn login_btn">
+                    Sign In
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
+          <a class="text-center mt-1" href="./login.html"
+            >Already member? Hop on!</a
+          >
         </div>
       </div>
     </div>
-
     <script type="text/javascript" src="../assets/bootstrap.js"></script>
   </body>
 </html>
