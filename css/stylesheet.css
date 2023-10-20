@@ -20,3 +20,9 @@ html {
     background-color: #c76e21 !important;
     border-color: #c76e21 !important;
 }
+.course-img{
+    border-radius: 1em;
+    max-height: 25em;
+    max-width: 60em;
+    box-shadow: 8px 8px 16px 0 rgba(0, 0, 0, 0.3);
+}
