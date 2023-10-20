@@ -8,3 +8,15 @@ html {
 .headerzone{
     font-size: large;
 }
+.btn-primary{
+    background-color: #F38729;
+    border-color: #F38729;
+}
+.btn-primary:hover{
+    background-color: #da7925;
+    border-color: #da7925;
+}
+.btn-primary:focus{
+    background-color: #c76e21 !important;
+    border-color: #c76e21 !important;
+}
