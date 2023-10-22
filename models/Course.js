@@ -8,9 +8,9 @@ const CourseSchema = new Schema({
     image: String,
     longDescription: String,
     shortDescription: String,
-    videoLink: String
+    videoLink: String,
 });
 
-const Course = mongoose.model("course", CourseSchema);
+const Course = mongoose.model("Course", CourseSchema);
 
 module.exports = Course;
