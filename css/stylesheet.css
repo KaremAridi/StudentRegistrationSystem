@@ -5,6 +5,9 @@ html {
     height: 100%;
     background: #60a3bc !important;
 }
+.orange{
+    color: #F38729;
+}
 .headerzone{
     font-size: large;
 }
