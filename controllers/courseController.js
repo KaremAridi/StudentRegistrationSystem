@@ -4,11 +4,8 @@ const mongoose = require("mongoose");
 
 const index = async (_,res) =>{
     try{
-        const courses = await Course.find({});
-   // const isLoggedIn = session.getSession().loggedIn;
-    
-    //if (isLoggedIn) user = await User.findById(isLoggedIn);
-//loggedIn: isLoggedIn, user:user
+    const courses = await Course.find({});
+
     res.render("../views/index.ejs", { courses: courses});
     }
     catch(error) {
