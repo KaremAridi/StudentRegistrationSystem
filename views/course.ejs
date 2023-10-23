@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course</title>
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <link rel="stylesheet" href="../css/stylesheet.css" />
+  </head>
+  <body>
+    <div>
+      <%-include("../views/navBar.ejs")%>
+
+    </div>
+    <div
+      class="container-fluid d-flex flex-wrap flex-row justify-content-around mt-5"
+    >
+      <div class="container-fluid card mt-2 mx-5 mb-5">
+        <h1 class="text-center mt-3" style="color:#F38729"><%= course.title %></h1>
+        <div class="align-self-center mt-3">
+          <img
+            class="course-img card-img-top"
+            src="../assets/images/<%= course.image %>"
+            alt="Card image cap"
+          />
+        </div>
+        <div class="card-body mx-5">
+          <p class="card-text mt-3">
+            <%- course.longDescription %>
+          </p>
+          <div class="d-flex felx justify-content-center mt-5 mb-3">
+            <iframe
+              width="560"
+              height="315"
+              src="<%= course.videoLink %>"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div class="d-flex flex-row-reverse mb-3">
+            <a href="#" class="btn btn-primary">Finish Course</a>    
+            <a href="#" class="btn btn-danger mx-4">Remove</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="../assets/bootstrap.js"></script>
+  </body>
+</html>

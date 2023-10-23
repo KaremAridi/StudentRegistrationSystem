@@ -13,4 +13,17 @@ const index = async (_,res) =>{
       }
 }
 
-module.exports = {index};
+const course = async (req,res) =>{
+    const id = req.params.id;
+
+    try{
+    const course = await Course.findById(id);
+
+    res.render("../views/course.ejs", { course: course});
+    }
+    catch(error) {
+        console.log(error);
+      }
+}
+
+module.exports = {index,course};
