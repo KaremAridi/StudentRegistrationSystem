@@ -30,7 +30,7 @@ const myCourses = async (_,res) =>{
     try{
     const courses = await Course.find({});
 
-    res.render("../views/ycourses.ejs", {courses: courses});
+    res.render("../views/mycourses.ejs", {courses: courses});
     }
     catch(error) {
         console.log(error);

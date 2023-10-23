@@ -12,6 +12,7 @@ mongoose.connect("mongodb+srv://karem:1oYPZ9ksKDBed6k9@studentregistration.kz3uf
 
 const homeRouter = require("./routes/home");
 const courseRouter = require("./routes/course");
+const mycoursesRouter = require("./routes/mycourses");
 
 const app = express();
 const port = 3000;
@@ -23,6 +24,7 @@ app.use(express.static('public'));
 
 app.use("/",homeRouter);
 app.use("/course/",courseRouter);
+app.use("/mycourses/",mycoursesRouter);
 
 
 

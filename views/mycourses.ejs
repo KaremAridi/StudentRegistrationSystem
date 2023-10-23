@@ -9,28 +9,8 @@
   </head>
   <body>
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand mx-5" href="#">
-          <img
-            src="../assets/images/logobg.png"
-            width="100em"
-            height="100em"
-            class="d-inline-block align-top"
-            alt="Logo"
-          />
-        </a>
+      <%-include("../views/navBar.ejs")%>
 
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav" style="margin-left: auto; padding-right: 4em">
-            <li class="nav-item">
-              <a class="nav-link" href="#">My Courses</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Account</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
     </div>
     <h1 class="text-center mt-3 text-white">My Courses</h1>
     <div
@@ -38,66 +18,29 @@
     >
       <div class="card">
         <ul class="list-group list-group-flush">
+          <% courses.forEach((course) => { %>
           <li class="list-group-item container-fluid d-flex flex-row mt-2">
             <div class="container-fluid d-flex flex-row">
               <div>
                 <img
-                  src="../assets/images/bio.jpg"
-                  alt="bio101"
+                  src="../assets/images/<%= course.image %>"
+                  alt="<%= course.title %>"
                   class="subcourse-img card-img-top"
                 />
               </div>
               <div class="container-fluid align-self-center">
-                <h4>Biology 101</h4>
+                <h4><%= course.title %></h4>
               </div>
             </div>
             <div>
               <div class="container-fluid d-flex flex-row justify-content-between align-content-center mt-2">
-                <a href="../html/course.html" type="button" class="btn btn-primary btn mx-2">Study</a>
+                <a href="/course/<%= course.id %>" type="button" class="btn btn-primary btn mx-2">Study</a>
                 <a type="button" class="btn btn-danger btn mx-2">Delete</a>
               </div>
             </div>
           </li>
-          <li class="list-group-item container-fluid d-flex flex-row mt-2">
-            <div class="container-fluid d-flex flex-row">
-              <div>
-                <img
-                  src="../assets/images/cmps.jpg"
-                  alt="cmps101"
-                  class="subcourse-img card-img-top"
-                />
-              </div>
-              <div class="container-fluid align-self-center">
-                <h4>Computer Science 101</h4>
-              </div>
-            </div>
-            <div>
-              <div class="container-fluid d-flex flex-row justify-content-between align-content-center mt-2">
-                <a href="../html/course.html" type="button" class="btn btn-primary btn mx-2">Study</a>
-                <a type="button" class="btn btn-danger btn mx-2">Delete</a>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item container-fluid d-flex flex-row mt-2">
-            <div class="container-fluid d-flex flex-row">
-              <div>
-                <img
-                  src="../assets/images/web.jpg"
-                  alt="web"
-                  class="subcourse-img card-img-top"
-                />
-              </div>
-              <div class="container-fluid align-self-center">
-                <h4>Web Programming 345</h4>
-              </div>
-            </div>
-            <div>
-              <div class="container-fluid d-flex flex-row justify-content-between align-content-center mt-2">
-                <a href="../html/course.html" type="button" class="btn btn-primary btn mx-2">Study</a>
-                <a type="button" class="btn btn-danger btn mx-2">Delete</a>
-              </div>
-            </div>
-          </li>
+          <% }); %>
+
         </ul>
       </div>
     </div>
