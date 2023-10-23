@@ -1,15 +1,14 @@
 const express = require('express');
-const homeRouter = require("./routes/home");
-
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/Louvre")
+mongoose.connect("mongodb+srv://karem:1oYPZ9ksKDBed6k9@studentregistration.kz3uftj.mongodb.net/")
     .then(() => {
         console.log("connected to the db.");
     }).catch(err => {
         console.log("error in connecting. ERR: " + err);
-    });
+});
 
+const homeRouter = require("./routes/home");
 
 const app = express();
 const port = 3000;
