@@ -1,4 +1,5 @@
 const express = require('express');
+const homeRouter = require("./routes/home");
 
 
 const mongoose = require('mongoose');
@@ -17,9 +18,9 @@ app.set('view engine', 'ejs');
 app.set('views','views');
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
-});
+
+app.use("/",homeRouter);
+
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
