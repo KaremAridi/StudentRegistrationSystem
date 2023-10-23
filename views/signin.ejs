@@ -24,12 +24,7 @@
           <div class="d-flex flex-column justify-content-center form_container">
             <h1 class="text-center mb-4 text-white">Sign In</h1>
             <div class="d-flex justify-content-center">
-              <form
-                class="forms"
-                method="POST"
-                action="/user/create"
-                enctype="application/json>"
-              >
+              <form class="forms" method="POST" action="/user/create">
                 <div class="input-group mb-3 col-md-6">
                   <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">
@@ -50,8 +45,8 @@
                       type="text"
                       class="form-control"
                       placeholder="Username"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
+                      name="userName"
+                      required
                     />
                   </div>
                 </div>
@@ -72,11 +67,11 @@
                       </svg>
                     </span>
                     <input
-                      type="text"
+                      type="password"
                       class="form-control"
                       placeholder="Password"
-                      aria-label="Password"
-                      aria-describedby="basic-addon1"
+                      name="password"
+                      required
                     />
                   </div>
                 </div>
@@ -97,19 +92,22 @@
                       </svg>
                     </span>
                     <input
-                      type="text"
+                      type="password"
                       class="form-control"
                       placeholder="Confirm Password"
-                      aria-label="Confirm Password"
-                      aria-describedby="basic-addon1"
+                      name="password2"
+                      required
                     />
                   </div>
                 </div>
 
                 <div class="d-flex justify-content-center mt-3 login_container">
-                  <button type="button" name="button" class="btn login_btn">
-                    Sign In
-                  </button>
+                  <input
+                    type="submit"
+                    name="button"
+                    value="Sign In"
+                    class="btn login_btn"
+                  />
                 </div>
               </form>
             </div>

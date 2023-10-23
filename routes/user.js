@@ -7,7 +7,7 @@ router.get("/",(_,res) => {
     res.redirect("/user/login");
 });
 
-router.get("/signup", UserController.signUp);
+router.get("/signin", UserController.signin);
 
 router.get("/login",UserController.login);
 

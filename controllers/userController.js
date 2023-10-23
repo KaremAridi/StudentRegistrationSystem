@@ -6,12 +6,17 @@ const saltRounds = 8;
 const login =  (_,res) => {
     res.render("../views/login.ejs",{loggedIn: session.getSession().loggedIn});
 };
-const signUp = (_,res) => {
+const signin = (_,res) => {
     res.render("../views/signin.ejs", {loggedIn: session.getSession().loggedIn});
 };
 
 const createUser = async (req,res) => {
     const extractedData = req.body;
+    if(extractedData.password != extractedData.password2){
+        console.log("Passwords Not Matching");
+        res.redirect("/user/signin");
+        return;
+    }
     const userToInsert = new User({
         userName: extractedData.userName,
         password: extractedData.password,
@@ -27,7 +32,7 @@ const createUser = async (req,res) => {
                         console.log("successful insertion");
                         res.redirect("/user/login");
                     }).catch(err => {
-                        res.redirect("/user/signup");
+                        res.redirect("/user/signin");
                         console.log("An error occured during signing up");
                     });
                 });
@@ -69,4 +74,4 @@ const signout = (req,res) => {
     session.setSession(req.session);
     res.redirect("/");
 }
-module.exports = {login, signUp, createUser, authenticatUser, signout};
+module.exports = {login, signin, createUser, authenticatUser, signout};

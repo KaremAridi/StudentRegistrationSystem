@@ -1,4 +1,5 @@
 const express = require('express');
+var bodyParser = require('body-parser')
 
 const mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://karem:1oYPZ9ksKDBed6k9@studentregistration.kz3uftj.mongodb.net/StudentRegistration")
@@ -21,12 +22,13 @@ const port = 3000;
 app.set('view engine', 'ejs');
 app.set('views','views');
 app.use(express.static('public'));
-
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/",homeRouter);
 app.use("/course/",courseRouter);
 app.use("/mycourses/",mycoursesRouter);
-app.use("/user",userRouter);
+app.use("/user/",userRouter);
 
 
 
