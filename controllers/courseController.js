@@ -26,4 +26,15 @@ const course = async (req,res) =>{
       }
 }
 
-module.exports = {index,course};
+const myCourses = async (_,res) =>{
+    try{
+    const courses = await Course.find({});
+
+    res.render("../views/ycourses.ejs", {courses: courses});
+    }
+    catch(error) {
+        console.log(error);
+      }
+}
+
+module.exports = {index,course,myCourses};
