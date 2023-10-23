@@ -24,7 +24,12 @@
           <div class="d-flex flex-column justify-content-center form_container">
             <h1 class="text-center mb-4 text-white">Sign In</h1>
             <div class="d-flex justify-content-center">
-              <form>
+              <form
+                class="forms"
+                method="POST"
+                action="/user/create"
+                enctype="application/json>"
+              >
                 <div class="input-group mb-3 col-md-6">
                   <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">
@@ -109,7 +114,7 @@
               </form>
             </div>
           </div>
-          <a class="text-center mt-1" href="./login.html"
+          <a class="text-center mt-1" href="/user/login"
             >Already member? Hop on!</a
           >
         </div>
