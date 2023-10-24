@@ -29,12 +29,20 @@ const course = async (req, res) => {
   try {
     const course = await Course.findById(id);
     const user = await User.findById(session.getSession().loggedIn);
-    const reg = user.registeredCourses;
+    const reg = user.registeredCourses ?? [];
+    const finished = user.finishedCourses ?? [];
     course.registered=false;
+    course.finished=false;
 
     for (let i = 0; i<reg.length; i++){
       if(reg[i].equals(course._id)){
         course.registered=true;
+        break;
+      }
+    }
+    for (let i = 0; i<finished.length; i++){
+      if(finished[i].equals(course._id)){
+        course.finished=true;
         break;
       }
     }
