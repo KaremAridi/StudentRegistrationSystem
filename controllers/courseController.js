@@ -50,10 +50,6 @@ const myCourses = async (_, res) => {
     return;
   }
   try {
-    if (session.getSession().loggedIn == undefined) {
-      res.redirect("/user/login");
-      return;
-    }
     const user = await User.findById(session.getSession().loggedIn);
 
     const courses = await Course.find({
@@ -68,6 +64,8 @@ const myCourses = async (_, res) => {
 
 const register = async (req, res) => {
   try {
+    if(mongoose.Types.ObjectId.isValid(req.params.id)){
+   
     const cousreid = req.params.id;
 
     const userID = session.getSession().loggedIn;
@@ -78,11 +76,12 @@ const register = async (req, res) => {
     if (registeredCourses.indexOf(cousreid) === -1) {
       registeredCourses.push(cousreid);
     }    
-    const course = await Course.findById(cousreid);
-
     user.registeredCourses= registeredCourses
     user.save()
-    res.redirect(`/course/${cousreid}`,{course: course});
+    const course = await Course.findById(cousreid);
+    course.registered = true
+    res.render("../views/course.ejs", { course: course });
+  }
   } catch (error) {
     console.log(error);
   }
