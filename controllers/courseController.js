@@ -12,20 +12,7 @@ const index = async (_, res) => {
     const courses = await Course.find({});
 
     const user = await User.findById(session.getSession().loggedIn);
-//     const registeredCourses = user.registeredCourses ?? [];
-//     const myCourses = await Course.find({
-//       _id: { $in: registeredCourses.map(id => new mongoose.Types.ObjectId(id)) }
-//     });
-
-//     courses.forEach(course => {
-//       if (myCourses.includes(course._id.toString())) {
-// console.log("yes")
-//           course.registered = true;
-//         }else{
-//           course.registered = false;
-//         }
-//       });
-      
+     
     res.render("../views/index.ejs", { courses: courses, user: user });
   } catch (error) {
     console.log(error);
@@ -41,7 +28,16 @@ const course = async (req, res) => {
 
   try {
     const course = await Course.findById(id);
+    const user = await User.findById(session.getSession().loggedIn);
+    const reg = user.registeredCourses;
+    course.registered=false;
 
+    for (let i = 0; i<reg.length; i++){
+      if(reg[i].equals(course._id)){
+        course.registered=true;
+        break;
+      }
+    }
     res.render("../views/course.ejs", { course: course });
   } catch (error) {
     console.log(error);
@@ -82,13 +78,11 @@ const register = async (req, res) => {
     if (registeredCourses.indexOf(cousreid) === -1) {
       registeredCourses.push(cousreid);
     }    
+    const course = await Course.findById(cousreid);
 
     user.registeredCourses= registeredCourses
     user.save()
-    for (temp in user.registeredCourses){
-    console.log(temp)
-    }
-    res.redirect("/");
+    res.redirect(`/course/${cousreid}`,{course: course});
   } catch (error) {
     console.log(error);
   }

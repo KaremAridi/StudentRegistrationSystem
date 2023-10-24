@@ -24,12 +24,8 @@
           <p class="card-text">
             <%= course.shortDescription %>
           </p>
-          <% if (course.registered){ %>      
-            <a class="btn btn-outlined-primary disabled">On Going</a>    
-          <% } else{ %>
-            <a href="/register/<%= course.id %>" class="btn btn-primary">Register</a>
-            <% } %>
-          <a href="/course/<%= course.id %>" class="btn btn-outline-primary">Check Course</a>
+       
+          <a href="/course/<%= course.id %>" class="btn btn-primary">Check Course</a>
         </div>
       </div>
       <% }); %>
