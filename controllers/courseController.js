@@ -12,19 +12,19 @@ const index = async (_, res) => {
     const courses = await Course.find({});
 
     const user = await User.findById(session.getSession().loggedIn);
-    const registeredCourses = user.registeredCourses ?? [];
-    const myCourses = await Course.find({
-      _id: { $in: registeredCourses.map(id => new mongoose.Types.ObjectId(id)) }
-    });
+//     const registeredCourses = user.registeredCourses ?? [];
+//     const myCourses = await Course.find({
+//       _id: { $in: registeredCourses.map(id => new mongoose.Types.ObjectId(id)) }
+//     });
 
-    courses.forEach(course => {
-      if (myCourses.includes(course._id.toString())) {
-console.log("yes")
-          course.registered = true;
-        }else{
-          course.registered = false;
-        }
-      });
+//     courses.forEach(course => {
+//       if (myCourses.includes(course._id.toString())) {
+// console.log("yes")
+//           course.registered = true;
+//         }else{
+//           course.registered = false;
+//         }
+//       });
       
     res.render("../views/index.ejs", { courses: courses, user: user });
   } catch (error) {
@@ -34,6 +34,10 @@ console.log("yes")
 
 const course = async (req, res) => {
   const id = req.params.id;
+  if (session.getSession().loggedIn == undefined) {
+    res.redirect("/user/login");
+    return;
+  }
 
   try {
     const course = await Course.findById(id);
@@ -45,6 +49,10 @@ const course = async (req, res) => {
 };
 
 const myCourses = async (_, res) => {
+  if (session.getSession().loggedIn == undefined) {
+    res.redirect("/user/login");
+    return;
+  }
   try {
     if (session.getSession().loggedIn == undefined) {
       res.redirect("/user/login");
@@ -86,4 +94,17 @@ const register = async (req, res) => {
   }
 };
 
-module.exports = { index, course, myCourses, register };
+const removeCourse = async (req,res) => {
+  const Id = req.params.id;
+  try{
+  const user = await User.findById(session.getSession().loggedIn);
+  const registered = user.registeredCourses;
+  const updatedRegister = registered.filter((elem) => !elem.equals(Id) );
+  await User.findByIdAndUpdate(session.getSession().loggedIn,{ registeredCourses: updatedRegister});
+  }catch(error) {
+    console.log(error);
+  }
+  res.redirect("/mycourses");
+};
+
+module.exports = { index, course, myCourses, register,removeCourse };
