@@ -72,7 +72,7 @@ const myCourses = async (_, res) => {
     });
     }
 
-    res.render("../views/mycourses.ejs", { courses: courses });
+    res.render("../views/mycourses.ejs", { courses: courses, admin:user.admin });
   } catch (error) {
     console.log(error);
   }
