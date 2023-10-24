@@ -36,6 +36,7 @@ app.use(session({
 
 
 app.use("/",homeRouter);
+app.use("/register/",homeRouter);
 app.use("/course/",courseRouter);
 app.use("/mycourses/",mycoursesRouter);
 app.use("/user/",userRouter);
@@ -43,7 +44,6 @@ app.use("/user/",userRouter);
 
 app.use((_, res) => {
   const absolutePath = path.join(__dirname, '/frontend/html/404page.html');
-  console.log(absolutePath); 
   res.status(404).sendFile(absolutePath);
 });
 
