@@ -72,25 +72,17 @@
             <th>Course Name</th>
             <th>Registered</th>
             <th>Finished</th>
-            <th>% Registered</th>
-            <th>% Finished</th>
           </tr>
         </thead>
         <tbody>
+          <% results.forEach((result) => { %>
           <tr>
-            <td>Course 1</td>
-            <td>100</td>
-            <td>75</td>
-            <td><%= ((75 / 100) * 100).toFixed(2) %>%</td>
-            <td><%= ((75 / 100) * 100).toFixed(2) %>%</td>
+            <td><%= result.title %></td>
+            <td><%= result.registered %></td>
+            <td><%= result.finished %></td>
+            <td><%= ((75 / 100) * 100).toFixed(2) %></td>
           </tr>
-          <tr>
-            <td>Course 2</td>
-            <td>50</td>
-            <td>40</td>
-            <td><%= ((40 / 50) * 100).toFixed(2) %>%</td>
-            <td><%= ((40 / 50) * 100).toFixed(2) %>%</td>
-          </tr>
+          <% }); %>
         </tbody>
       </table>
       <br />

@@ -1,4 +1,5 @@
 const Course = require("../models/Course");
+const CourseResult = require("../models/CourseResult");
 const User = require("../models/User");
 const mongoose = require("mongoose");
 const session = require("../session");
@@ -71,8 +72,13 @@ const myCourses = async (_, res) => {
       }
     });
     }
+    let results = {};
+    //table
+    if(user.admin){
+      results = await CourseResult.find({});
+    }
 
-    res.render("../views/mycourses.ejs", { courses: courses, admin:user.admin });
+    res.render("../views/mycourses.ejs", { courses: courses, admin:user.admin,results:results });
   } catch (error) {
     console.log(error);
   }
@@ -100,6 +106,9 @@ const register = async (req, res) => {
     user.save()
     const course = await Course.findById(cousreid);
     course.registered = true
+    const temp = await CourseResult.findById(cousreid);
+    temp.registered = temp.registered +1
+    temp.save()
     res.render("../views/course.ejs", { course: course });
   }
   } catch (error) {
@@ -118,6 +127,9 @@ const removeCourse = async (req,res) => {
   const registered = user.registeredCourses;
   const updatedRegister = registered.filter((elem) => !elem.equals(Id) );
   await User.findByIdAndUpdate(session.getSession().loggedIn,{ registeredCourses: updatedRegister});
+  const temp = await CourseResult.findById(Id);
+    temp.registered = temp.registered -1
+    temp.save()
   }catch(error) {
     console.log(error);
   }
@@ -144,6 +156,9 @@ const finishCourse = async(req,res) =>{
     const course = await Course.findById(cousreid);
     course.registered=true
     course.finished = true
+    const temp = await CourseResult.findById(cousreid);
+    temp.finished = temp.finished +1
+    temp.save()
     res.render("../views/course.ejs", { course: course });
 
   }catch(error) {
