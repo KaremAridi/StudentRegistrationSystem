@@ -42,10 +42,12 @@
           <div class="d-flex flex-row-reverse mb-3">
             <% if (!course.registered){ %>
             <a href="/register/<%= course.id %>" class="btn btn-primary">Register</a>
-              <% }else{ %>
-            <a href="#" class="btn btn-primary">Finish Course</a>    
+              <% }else if (!course.finished){ %>
+            <a href="/finish/<%= course.id %>" class="btn btn-primary">Finish Course</a>    
             <a href="/register/removeCourse/<%= course.id %>" class="btn btn-danger mx-4">Remove</a>
-            <% } %>
+            <% } else{ %>
+              <a href="" class="btn btn-outlined-primary disabled">Course Completed</a>    
+              <% } %>
           </div>
         </div>
       </div>

@@ -100,4 +100,27 @@ const removeCourse = async (req,res) => {
   res.redirect("/mycourses");
 };
 
-module.exports = { index, course, myCourses, register,removeCourse };
+const finishCourse = async(req,res) =>{
+  const cousreid = req.params.id;
+  try{
+    const userID = session.getSession().loggedIn;
+    const user = await User.findById(userID);
+
+    const finishedCourses = user.finishedCourses ?? [];
+   
+    if (finishedCourses.indexOf(cousreid) === -1) {
+      finishedCourses.push(cousreid);
+    }    
+    user.finishedCourses= finishedCourses
+    user.save()
+    const course = await Course.findById(cousreid);
+    course.registered=true
+    course.finished = true
+    res.render("../views/course.ejs", { course: course });
+
+  }catch(error) {
+    console.log(error);
+  }
+}
+
+module.exports = { index, course, myCourses, register,removeCourse,finishCourse };

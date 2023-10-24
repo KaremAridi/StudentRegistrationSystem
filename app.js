@@ -18,6 +18,7 @@ const courseRouter = require("./routes/course");
 const mycoursesRouter = require("./routes/mycourses");
 const userRouter = require("./routes/user");
 const registerRouter = require("./routes/register");
+const finishRouter = require("./routes/finish");
 
 const app = express();
 const port = 3000;
@@ -38,6 +39,7 @@ app.use(session({
 
 app.use("/",homeRouter);
 app.use("/register",registerRouter);
+app.use("/finish",finishRouter);
 app.use("/course",courseRouter);
 app.use("/mycourses",mycoursesRouter);
 app.use("/user",userRouter);
