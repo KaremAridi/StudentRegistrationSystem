@@ -41,10 +41,9 @@ const createUser = async (req,res) => {
 const authenticatUser = async (req,res) => {
    const credentialsInfo = req.body;
    try{
-   const isAccountValid = await User.findOne({ username: credentialsInfo.username},'username password');
+   const isAccountValid = await User.findOne({ userName: credentialsInfo.userName},'userName password');
    if(isAccountValid) {
     const pass = isAccountValid.password;
-
     bcrypt.compare(credentialsInfo.password,pass,(err,result) => {
         if(err) {
             console.log(err);
@@ -72,6 +71,6 @@ const authenticatUser = async (req,res) => {
 const signout = (req,res) => {
     req.session.loggedIn = undefined;
     session.setSession(req.session);
-    res.redirect("/");
+    res.redirect("/user/login");
 }
 module.exports = {login, signin, createUser, authenticatUser, signout};

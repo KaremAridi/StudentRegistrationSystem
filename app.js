@@ -1,5 +1,7 @@
 const express = require('express');
+const session = require("express-session");
 var bodyParser = require('body-parser')
+const path = require('path');
 
 const mongoose = require('mongoose');
 mongoose.connect("mongodb+srv://karem:1oYPZ9ksKDBed6k9@studentregistration.kz3uftj.mongodb.net/StudentRegistration")
@@ -25,10 +27,25 @@ app.use(express.static('public'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true, maxAge: 60000 } 
+}));
+
+
 app.use("/",homeRouter);
 app.use("/course/",courseRouter);
 app.use("/mycourses/",mycoursesRouter);
 app.use("/user/",userRouter);
+
+
+app.use((_, res) => {
+  const absolutePath = path.join(__dirname, '/frontend/html/404page.html');
+  console.log(absolutePath); 
+  res.status(404).sendFile(absolutePath);
+});
 
 
 

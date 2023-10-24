@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>404 - Page Not Found</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 72px;
+            color: #e65100;
+            font-family: Arial, sans-serif;
+            animation: shake 0.5s infinite;
+        }
+
+        img {
+            width: 200px;
+        }
+
+        p {
+            font-family: Arial, sans-serif;
+        }
+
+        .button-container {
+            margin: 20px;
+        }
+
+        .back-button {
+            background-color: #ff6600; /* Orange color */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        .back-button:hover {
+            background-color: #e65100; /* Darker orange on hover */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-5px);
+            }
+            100% {
+                transform: translateX(5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>404</h1>
+    <img src="../assets/images/logo.png" alt="Owl Image">
+    <h3>Oops! Page not found.</h3>
+    <div class="button-container">
+        <a class="btn back-button" href="/">Go back to Home</a>
+    </div>
+
+    <script>
+        function goToHomePage() {
+            // Redirect to your home page (replace with the actual URL)
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>
