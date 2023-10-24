@@ -8,6 +8,7 @@ const UserSchema = new Schema({
     password: String,
     registeredCourses:{type: [mongoose.Schema.Types.ObjectId], default: []},
     finishedCourses:{type: [mongoose.Schema.Types.ObjectId], default: []},
+    admin: Boolean
 });
 
 const User = mongoose.model("User",UserSchema);

@@ -20,6 +20,7 @@ const createUser = async (req,res) => {
     const userToInsert = new User({
         userName: extractedData.userName,
         password: extractedData.password,
+        admin:false
     });
     bcrypt.hash(req.body.password, saltRounds, (err, hashedPass) => {
         if(err) {

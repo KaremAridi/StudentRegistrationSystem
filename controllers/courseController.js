@@ -64,6 +64,14 @@ const myCourses = async (_, res) => {
       _id: user.registeredCourses.map((course) => course._id),
     });
 
+    const finishedCourses = user.finishedCourses?? [];
+    for(let i =0;i<finishedCourses.length;i++){
+      courses.forEach((course) => {if(course._id.equals(finishedCourses[i])){
+        course.finished = true
+      }
+    });
+    }
+
     res.render("../views/mycourses.ejs", { courses: courses });
   } catch (error) {
     console.log(error);
@@ -71,6 +79,10 @@ const myCourses = async (_, res) => {
 };
 
 const register = async (req, res) => {
+  if (session.getSession().loggedIn == undefined) {
+    res.redirect("/user/login");
+    return;
+  }
   try {
     if(mongoose.Types.ObjectId.isValid(req.params.id)){
    
@@ -96,6 +108,10 @@ const register = async (req, res) => {
 };
 
 const removeCourse = async (req,res) => {
+  if (session.getSession().loggedIn == undefined) {
+    res.redirect("/user/login");
+    return;
+  }
   const Id = req.params.id;
   try{
   const user = await User.findById(session.getSession().loggedIn);
@@ -109,6 +125,10 @@ const removeCourse = async (req,res) => {
 };
 
 const finishCourse = async(req,res) =>{
+  if (session.getSession().loggedIn == undefined) {
+    res.redirect("/user/login");
+    return;
+  }
   const cousreid = req.params.id;
   try{
     const userID = session.getSession().loggedIn;

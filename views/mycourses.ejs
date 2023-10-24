@@ -8,10 +8,7 @@
     <link rel="stylesheet" href="../css/stylesheet.css" />
   </head>
   <body>
-    <div>
-      <%-include("../views/navBar.ejs")%>
-
-    </div>
+    <div><%-include("../views/navBar.ejs")%></div>
     <h1 class="text-center mt-3 text-white">My Courses</h1>
     <div
       class="container-fluid d-flex flex-wrap flex-column justify-content-around mt-3"
@@ -33,17 +30,74 @@
               </div>
             </div>
             <div>
-              <div class="container-fluid d-flex flex-row justify-content-between align-content-center mt-2">
-                <a href="/course/<%= course.id %>" type="button" class="btn btn-primary btn mx-2">Study</a>
-                <a type="button" class="btn btn-danger btn mx-2" href="/mycourses/removeCourse/<%= course.id %>">Delete</a>
+              <div
+                class="container-fluid d-flex flex-row justify-content-between align-content-center mt-2"
+              >
+                <% if (course.finished) { %>
+                <a
+                  href=""
+                  type="button"
+                  class="btn btn-outline-primary disabled btn mx-2"
+                  >Completed</a
+                >
+                <% } else{ %>
+                <a
+                  href="/course/<%= course.id %>"
+                  type="button"
+                  class="btn btn-primary btn mx-2"
+                  >Study</a
+                >
+                <a
+                  type="button"
+                  class="btn btn-danger btn mx-2"
+                  href="/register/removeCourse/<%= course.id %>"
+                  >Delete</a
+                >
+                <% } %>
               </div>
             </div>
           </li>
           <% }); %>
-
         </ul>
       </div>
     </div>
+
+    <!-- Table -->
+
+    <div class="container">
+      <h1 class="text-center mt-5 text-white">Course Progress</h1>
+      <table class="table table-bordered mb-5">
+        <thead class="thead-dark">
+          <tr>
+            <th>Course Name</th>
+            <th>Registered</th>
+            <th>Finished</th>
+            <th>% Registered</th>
+            <th>% Finished</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Course 1</td>
+            <td>100</td>
+            <td>75</td>
+            <td><%= ((75 / 100) * 100).toFixed(2) %>%</td>
+            <td><%= ((75 / 100) * 100).toFixed(2) %>%</td>
+          </tr>
+          <tr>
+            <td>Course 2</td>
+            <td>50</td>
+            <td>40</td>
+            <td><%= ((40 / 50) * 100).toFixed(2) %>%</td>
+            <td><%= ((40 / 50) * 100).toFixed(2) %>%</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <br />
+      <br />
+    </div>
+
     <script type="text/javascript" src="../assets/bootstrap.js"></script>
   </body>
 </html>
