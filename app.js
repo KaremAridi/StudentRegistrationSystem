@@ -4,7 +4,7 @@ var bodyParser = require('body-parser')
 const path = require('path');
 
 const mongoose = require('mongoose');
-mongoose.connect("mongodb+srv://makramhasany:yONZyLEdIZm9tsC2@studentregistration.psxtf6w.mongodb.net/StudentRegistration")
+mongoose.connect("enter-url-for-mongodb")
     .then(() => {
         console.log("connected to the db.");
 
