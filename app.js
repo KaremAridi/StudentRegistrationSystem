@@ -4,13 +4,7 @@ var bodyParser = require('body-parser')
 const path = require('path');
 
 const mongoose = require('mongoose');
-mongoose.connect("enter-url-for-mongodb")
-    .then(() => {
-        console.log("connected to the db.");
-
-    }).catch(err => {
-        console.log("error in connecting. ERR: " + err);
-});
+// Enter mongoose conn function
 
 
 const homeRouter = require("./routes/home");
